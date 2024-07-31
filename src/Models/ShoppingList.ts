@@ -2,8 +2,13 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface Product {
   name: string;
-  category: string;
+  category: Category;
   quantity: number;
+}
+
+interface Category {
+  id: string;
+  name: string;
 }
 
 interface ShoppingListState {
@@ -26,7 +31,7 @@ const shoppingList = createSlice({
       if (existingProduct) {
         existingProduct.quantity += 1;
       } else {
-        state.products.push({ name, category, quantity: 1 });
+        state.products.push({ name, {category}, quantity: 1 });
       }
       state.totalItems += 1;
     },
